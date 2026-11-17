@@ -48,6 +48,10 @@ CPPFLAGS += -I$(SRC_DIR)
 CXXFLAGS  ?= -O3 -std=c++20 -Wall -Wextra -Wno-missing-braces -Wno-unused-function -pthread
 CFLAGS    ?= -O3 -Wall -Wextra -Wno-missing-braces -Wno-unused-function
 
+# char is unsigned on ARM Linux; the DOS-era code expects it signed (e.g. VISU's animation deltas)
+CXXFLAGS  += -fsigned-char
+CFLAGS    += -fsigned-char
+
 ifeq ($(findstring em++,$(notdir $(CXX))),em++)
   EM_COMPILE_FLAGS := --use-port=sdl3
   EM_LINK_FLAGS    := --use-port=sdl3 -sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2 -sFULL_ES3=1 -sALLOW_MEMORY_GROWTH=1 -sWASM=1 -sASYNCIFY
