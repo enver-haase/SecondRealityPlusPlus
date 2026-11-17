@@ -1172,6 +1172,11 @@ bool Graphics::Init(WindowType _fullscreen)
     SDL_SetHint(SDL_HINT_AUDIO_CATEGORY, "playback");
 
     const SDL_WindowFlags windowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+#elif defined(__ANDROID__)
+    // landscape only, immersive fullscreen; SDL blocks the event loop and keeps the GL context while paused
+    SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight");
+
+    const SDL_WindowFlags windowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_HIGH_PIXEL_DENSITY;
 #elif defined(__APPLE__)
     // Retina: render at native pixel resolution
     const SDL_WindowFlags windowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY;

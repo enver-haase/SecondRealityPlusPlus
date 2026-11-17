@@ -16,6 +16,7 @@ C++ version of "Second Reality by Future Crew"
 - Linux (Ubuntu)
 - macOS (Apple Silicon)
 - iOS / iPadOS
+- Android
 - Web browsers (e.g. Google Chrome)
 
 ## Tested
@@ -69,6 +70,12 @@ C++ version of "Second Reality by Future Crew"
 - Run `iOS/build-sdl3.sh` (downloads SDL3 and builds it for device and simulator)
 - Copy `iOS/Local.xcconfig.example` to `iOS/Local.xcconfig` and set your team ID and bundle ID
 - Run `xcodegen generate` in `iOS/` and open `iOS/SecondReality.xcodeproj`
+
+### Android
+- Install the Android SDK with NDK 28.2.13676358 and CMake 4.1.2, and a JDK 17 or newer
+- Run `Android/fetch-sdl3.sh` (downloads the SDL3 sources; Gradle builds SDL3 together with the demo)
+- Create `Android/local.properties` with `sdk.dir=<path to the SDK>` and optionally `applicationId=<your app ID>`
+- Run `./gradlew installDebug` in `Android/` with a device or emulator connected
 
 ### Web
 - Setup [emscripten](https://emscripten.org/docs/getting_started/downloads.html)

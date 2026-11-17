@@ -244,11 +244,11 @@ void MessageBoxA(void * /*hWnd*/, const char * text, const char * caption, int /
 
 #ifdef __APPLE__
 #include <TargetConditionals.h>
-#if TARGET_OS_IOS
-// renames main() to SDL_main(), started by SDL's UIApplication delegate;
-// included here so the parts' main() functions keep their names
-#include <SDL3/SDL_main.h>
 #endif
+#if (defined(__APPLE__) && TARGET_OS_IOS) || defined(__ANDROID__)
+// renames main() to SDL_main(), started by SDL's UIApplication delegate (iOS)
+// or SDLActivity (Android); included here so the parts' main() functions keep their names
+#include <SDL3/SDL_main.h>
 #endif
 
 int main(int argc, char * argv[])
